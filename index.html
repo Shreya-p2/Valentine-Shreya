@@ -6,48 +6,54 @@
 <title>For Akarsh 💘</title>
 
 <style>
+:root{
+  --bg:#ffe6ec;
+  --accent:#d11b4c;
+  --btn:#ff4d6d;
+}
+
 body{
   margin:0;
   font-family: 'Georgia', serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  background:linear-gradient(135deg,#ffe6ec,#fff0f5);
+  background: var(--bg);
   overflow:hidden;
 }
 
-/* ---------- Card ---------- */
-.card{
-  background:white;
-  padding:30px;
-  border-radius:20px;
+.page{
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,0.1);
-  max-width:350px;
+  padding:20px;
+  box-sizing:border-box;
 }
 
 h1{
-  color:#d11b4c;
-  font-size:24px;
+  color:var(--accent);
+  font-size:28px;
+  margin-bottom:15px;
 }
 
-.sub{
-  margin:15px 0 25px;
-  color:#555;
+p{
+  font-size:18px;
+  color:#333;
+  max-width:300px;
 }
 
 button{
-  padding:12px 25px;
+  padding:12px 24px;
+  margin:10px;
   border:none;
-  border-radius:30px;
+  border-radius:25px;
   font-size:16px;
   cursor:pointer;
-  margin:5px;
 }
 
 .yes{
-  background:#ff4d6d;
+  background:var(--btn);
   color:white;
 }
 
@@ -55,128 +61,113 @@ button{
   background:#ddd;
 }
 
-/* ---------- Page 2 ---------- */
-#lovePage{
+.hidden{
   display:none;
-  position:fixed;
-  inset:0;
-  background:linear-gradient(135deg,#fff0f5,#ffe4ec);
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
-  padding:30px;
-  overflow:hidden;
 }
 
-#lovePage h1{
-  margin-bottom:20px;
-}
-
-#lovePage p{
-  font-size:18px;
-  color:#444;
-  margin:10px 0;
-}
-
-/* floating hearts */
+/* Floating hearts */
 .heart{
-  position:absolute;
+  position:fixed;
   font-size:20px;
-  animation:float 6s linear infinite;
+  animation: float 5s linear infinite;
+  opacity:0.8;
 }
 
 @keyframes float{
-  0%{
-    transform:translateY(100vh) scale(0.5);
-    opacity:1;
-  }
-  100%{
-    transform:translateY(-10vh) scale(1.2);
-    opacity:0;
-  }
+  0%{ transform:translateY(100vh); opacity:0; }
+  20%{ opacity:1; }
+  100%{ transform:translateY(-10vh); opacity:0; }
 }
 
-/* ---------- Page 3 ---------- */
-#finalPage{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:linear-gradient(135deg,#ffd6e0,#ffeaf2);
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:30px;
-}
-
-#finalPage h1{
-  font-size:28px;
-  color:#d11b4c;
+/* Panda images */
+.panda{
+  width:160px;
+  margin:15px 0;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= PAGE 1 ================= -->
-<div class="card" id="firstPage">
+<!-- PAGE 1 -->
+<div class="page" id="page1">
   <h1>🥺💗<br>Akarsh, will you be my Valentine?</h1>
-  <p class="sub">Be honest… you already know the answer 😉💞</p>
-  <button class="yes" onclick="showLovePage()">Yes ❤️</button>
-  <button class="no" onclick="moveNo()">No 🙈</button>
+  <p>Be honest… you already know the answer 😌💞</p>
+  <div>
+    <button class="yes" onclick="goToPage2()">Yes ❤️</button>
+    <button class="no" onclick="moveNo(this)">No 🙈</button>
+  </div>
 </div>
 
-<!-- ================= PAGE 2 ================= -->
-<div id="lovePage">
-  <h1>💖 For My Favorite Person 💖</h1>
-  <p>💌 I miss you even when we just talked.</p>
-  <p>💞 You are my favorite notification.</p>
-  <p>💗 You are my safe place.</p>
-  <p>🥺 Life feels softer with you.</p>
-  <p>🌸 I can’t wait to hug you again.</p>
-  <p>❤️ You are my forever person.</p>
-  <br>
-  <button class="yes" onclick="showFinalPage()">Continue 💘</button>
+<!-- PAGE 2 -->
+<div class="page hidden" id="page2">
+  <h1>I Miss You So Much 💕</h1>
+
+  <p>
+    You are my favorite person in the whole world 🥰<br><br>
+    Every day without you feels incomplete 💭<br><br>
+    I carry you in my heart everywhere 💖<br><br>
+    You make even ordinary days magical ✨<br><br>
+    I smile randomly because of you 😊<br><br>
+    And I fall for you more every single day 💘
+  </p>
+
+  <button class="yes" onclick="goToPage3()">Continue 💞</button>
 </div>
 
-<!-- ================= PAGE 3 ================= -->
-<div id="finalPage">
-  <h1>💘 YAYYYY 💘</h1>
-  <p style="font-size:20px;color:#444;">
-    I knew you'd say YES 😌💗<br>
+<!-- PAGE 3 -->
+<div class="page hidden" id="page3">
+  
+  <img class="panda"
+  src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" />
+
+  <h1>YAYYYY 💗</h1>
+
+  <p>
+    I knew you'd say YES 😌💞<br><br>
     You make my world brighter every single day.
   </p>
+
+  <img class="panda"
+  src="https://media.giphy.com/media/l2JhC1tJ1q9Vh6Vxu/giphy.gif" />
 </div>
 
 <script>
-function moveNo(){
-  const noBtn=document.querySelector(".no");
-  const x=Math.random()*200-100;
-  const y=Math.random()*200-100;
-  noBtn.style.transform=`translate(${x}px,${y}px)`;
-}
 
-function showLovePage(){
-  document.getElementById("firstPage").style.display="none";
-  document.getElementById("lovePage").style.display="flex";
+function goToPage2(){
+  document.getElementById("page1").classList.add("hidden");
+  document.getElementById("page2").classList.remove("hidden");
   startHearts();
 }
 
-function showFinalPage(){
-  document.getElementById("lovePage").style.display="none";
-  document.getElementById("finalPage").style.display="flex";
+function goToPage3(){
+  document.getElementById("page2").classList.add("hidden");
+  document.getElementById("page3").classList.remove("hidden");
 }
 
-function startHearts(){
-  for(let i=0;i<40;i++){
-    let heart=document.createElement("div");
-    heart.innerHTML="💗";
-    heart.className="heart";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(4+Math.random()*4)+"s";
-    document.getElementById("lovePage").appendChild(heart);
-  }
+function moveNo(btn){
+  btn.style.position="absolute";
+  btn.style.top=Math.random()*70+"%";
+  btn.style.left=Math.random()*70+"%";
 }
+
+/* floating hearts */
+function startHearts(){
+  setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(15+Math.random()*25)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+      heart.remove();
+    },5000);
+
+  },300);
+}
+
 </script>
 
 </body>
