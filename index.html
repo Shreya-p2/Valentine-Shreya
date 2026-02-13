@@ -14,6 +14,7 @@ body{
   overflow:hidden;
 }
 
+/* Shared page style */
 .page{
   display:none;
   height:100vh;
@@ -21,13 +22,14 @@ body{
   justify-content:center;
   align-items:center;
   flex-direction:column;
+  padding:20px;
 }
 
 .active{
   display:flex;
 }
 
-/* PAGE 1 */
+/* Buttons */
 button{
   padding:14px 28px;
   margin:10px;
@@ -44,9 +46,10 @@ button{
 
 .no{
   background:#ddd;
+  position:relative;
 }
 
-/* PAGE 2 */
+/* PAGE 2 hearts */
 .hearts{
   position:absolute;
   top:0;
@@ -71,8 +74,8 @@ button{
 
 .message{
   font-size:20px;
-  padding:20px;
-  max-width:300px;
+  max-width:320px;
+  line-height:1.6;
 }
 
 /* PAGE 3 */
@@ -81,19 +84,20 @@ button{
   font-weight:bold;
   margin-bottom:20px;
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- PAGE 1 (OLD VERSION RESTORED) -->
+<!-- PAGE 1 -->
 <div class="page active" id="page1">
   <h1>Akarsh, will you be my Valentine? 💘</h1>
   <button class="yes" onclick="goToPage2()">Yes ❤️</button>
   <button class="no">No 🙈</button>
 </div>
 
-<!-- PAGE 2 (OLD HEART PAGE RESTORED) -->
+<!-- PAGE 2 -->
 <div class="page" id="page2">
   <div class="hearts" id="hearts"></div>
 
@@ -103,13 +107,13 @@ button{
     I miss you every second.<br><br>
     You make my world brighter.<br><br>
     I fall for you more every day.<br><br>
-    And I always will. 💞
+    And I always will Duduuuu 💞
   </div>
 
   <button class="yes" onclick="goToPage3()">Next 💌</button>
 </div>
 
-<!-- PAGE 3 (NO IMAGES, CLEAN) -->
+<!-- PAGE 3 -->
 <div class="page" id="page3">
   <div class="yay">YAYYYY 💗</div>
 
@@ -121,6 +125,21 @@ button{
 
 <script>
 
+/* Moving NO button */
+const noBtn = document.querySelector(".no");
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("click", moveNo);
+
+function moveNo(){
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+  noBtn.style.position = "absolute";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+/* Page navigation */
 function goToPage2(){
   document.getElementById("page1").classList.remove("active");
   document.getElementById("page2").classList.add("active");
@@ -132,8 +151,10 @@ function goToPage3(){
   document.getElementById("page3").classList.add("active");
 }
 
+/* Floating hearts */
 function startHearts(){
   const container=document.getElementById("hearts");
+  container.innerHTML="";
   for(let i=0;i<40;i++){
     const heart=document.createElement("div");
     heart.classList.add("heart");
