@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Akarsh 💘</title>
+  <style>
+    :root{
+      --bg1:#ffecec;
+      --bg2:#fff6ff;
+      --card:#ffffff;
+      --text:#2a2a2a;
+      --accent:#d11b4c;
+      --yes:#ff4d6d;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+      color:var(--text);
+      padding:18px;
+    }
+    .card{
+      width:min(560px, 92vw);
+      background:var(--card);
+      border-radius:22px;
+      padding:26px 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.12);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    h1{
+      margin:6px 0 8px;
+      color:var(--accent);
+      font-size: clamp(26px, 5vw, 40px);
+      letter-spacing:.3px;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .sub{margin:0 0 16px; font-size:16px; opacity:.9}
+    .big{
+      margin:14px auto 18px;
+      font-size:18px;
+      line-height:1.45;
+      max-width:38ch;
+    }
+    .btns{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px}
+    button{
+      border:none;
+      padding:14px 24px;
+      border-radius:999px;
+      font-size:18px;
+      font-weight:700;
+      cursor:pointer;
+      transition: transform .12s ease;
+    }
+    button:active{transform:scale(.98)}
+    #yes{
+      background:var(--yes);
+      color:white;
+      box-shadow: 0 12px 30px rgba(255,77,109,.35);
+    }
+    #no{
+      background:#f1f1f5;
+      color:#333;
+      position:relative;
+    }
+    .hearts{
+      position:absolute; inset:0;
+      pointer-events:none;
+      overflow:hidden;
+    }
+    .heart{
+      position:absolute;
+      font-size:18px;
+      opacity:0;
+      animation: floatUp 2.2s ease-in forwards;
+    }
+    @keyframes floatUp{
+      0%{transform: translateY(20px) scale(.9); opacity:0}
+      15%{opacity:1}
+      100%{transform: translateY(-260px) scale(1.2); opacity:0}
+    }
+    .overlay{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center; justify-content:center;
+      background:rgba(0,0,0,.45);
+      padding:18px;
+    }
+    .modal{
+      background:white;
+      width:min(560px, 92vw);
+      border-radius:22px;
+      padding:22px 18px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .modal h2{
+      margin:6px 0 10px;
+      color:var(--accent);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(24px, 4.5vw, 34px);
+    }
+    .close{
+      margin-top:14px;
+      background:#111;
+      color:#fff;
+      font-size:15px;
+      padding:10px 16px;
+    }
+    .mini{opacity:.8; font-size:14px; margin-top:8px}
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="hearts" id="hearts"></div>
+
+    <div style="font-size:34px">🥺💗</div>
+    <h1>Akarsh, will you be my Valentine? 💘</h1>
+    <p class="sub">Be honest… you already know the answer 😌💞</p>
+
+    <p class="big">💗 You’re my favorite notification, my favorite person, and my forever ❤️</p>
+
+    <div class="btns">
+      <button id="yes">Yes ❤️</button>
+      <button id="no">No 🙈</button>
+    </div>
+
+    <div class="mini">P.S. If you try to press “No”… it gets shy 😭💖</div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <div class="hearts" id="hearts2"></div>
+      <div style="font-size:36px">💞💞💞</div>
+      <h2>You Complete Me 💗</h2>
+      <p class="big">Yayyy!! I knew you’d say YES 🥹❤️<br>Now come here, my Valentine 😘💘</p>
+      <button class="close" id="closeBtn">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const overlay = document.getElementById("overlay");
+    const closeBtn = document.getElementById("closeBtn");
+
+    function sprinkleHearts(containerId, count=18){
+      const box = document.getElementById(containerId);
+      const hearts = ["💗","💖","💘","❤️","💞","💕"];
+      for(let i=0;i<count;i++){
+        const s = document.createElement("span");
+        s.className = "heart";
+        s.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+        s.style.left = Math.random()*100 + "%";
+        s.style.bottom = "-10px";
+        s.style.animationDelay = (Math.random()*0.6) + "s";
+        s.style.fontSize = (16 + Math.random()*16) + "px";
+        box.appendChild(s);
+        setTimeout(()=>s.remove(), 2400);
+      }
+    }
+
+    function moveNo(){
+      const x = (Math.random() * 240) - 120;
+      const y = (Math.random() * 140) - 70;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("click", moveNo);
+    noBtn.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(); });
+
+    yesBtn.addEventListener("click", ()=>{
+      sprinkleHearts("hearts", 22);
+      overlay.style.display = "flex";
+      sprinkleHearts("hearts2", 26);
+    });
+
+    closeBtn.addEventListener("click", ()=>{ overlay.style.display = "none"; });
+    overlay.addEventListener("click", (e)=>{ if(e.target === overlay) overlay.style.display = "none"; });
+  </script>
+
+</body>
+</html>
