@@ -1,60 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Akarsh 💘</title>
 
 <style>
-:root{
-  --bg:#ffe6ec;
-  --accent:#d11b4c;
-  --btn:#ff4d6d;
-}
-
 body{
   margin:0;
-  font-family: 'Georgia', serif;
-  background: var(--bg);
+  font-family: Georgia, serif;
+  background:#f6cfd6;
+  text-align:center;
   overflow:hidden;
 }
 
 .page{
-  width:100%;
+  display:none;
   height:100vh;
-  display:flex;
-  flex-direction:column;
+  width:100%;
   justify-content:center;
   align-items:center;
-  text-align:center;
-  padding:20px;
-  box-sizing:border-box;
+  flex-direction:column;
 }
 
-h1{
-  color:var(--accent);
-  font-size:30px;
-  margin-bottom:15px;
+.active{
+  display:flex;
 }
 
-p{
-  font-size:18px;
-  color:#333;
-  max-width:320px;
-  line-height:1.6;
-}
-
+/* PAGE 1 */
 button{
-  padding:12px 24px;
+  padding:14px 28px;
   margin:10px;
   border:none;
-  border-radius:25px;
-  font-size:16px;
+  border-radius:30px;
+  font-size:18px;
   cursor:pointer;
 }
 
 .yes{
-  background:var(--btn);
+  background:#ff4d6d;
   color:white;
 }
 
@@ -62,38 +46,49 @@ button{
   background:#ddd;
 }
 
-.hidden{
-  display:none;
+/* PAGE 2 */
+.hearts{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  z-index:-1;
 }
 
-/* Floating hearts */
 .heart{
-  position:fixed;
+  position:absolute;
+  color:#ff4d6d;
+  animation:float 6s linear infinite;
   font-size:20px;
-  animation: float 5s linear infinite;
-  opacity:0.8;
 }
 
 @keyframes float{
-  0%{ transform:translateY(100vh); opacity:0; }
-  20%{ opacity:1; }
-  100%{ transform:translateY(-10vh); opacity:0; }
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-10vh);}
 }
 
-/* Page 3 Styling */
+.message{
+  font-size:20px;
+  padding:20px;
+  max-width:300px;
+}
+
+/* PAGE 3 */
 .yay{
-  font-size:38px;
+  font-size:60px;
   font-weight:bold;
   margin-bottom:20px;
 }
 
-.message{
-  margin:15px 0 20px;
+.panda{
+  width:180px;
+  margin:15px 0;
 }
 
-.panda{
-  width:150px;
-  margin:10px 0;
+.hidden{
+  display:none;
 }
 </style>
 </head>
@@ -101,38 +96,35 @@ button{
 <body>
 
 <!-- PAGE 1 -->
-<div class="page" id="page1">
-  <h1>🥺💗<br>Akarsh, will you be my Valentine?</h1>
-  <p>Be honest… you already know the answer 😌💞</p>
-  <div>
-    <button class="yes" onclick="goToPage2()">Yes ❤️</button>
-    <button class="no" onclick="moveNo(this)">No 🙈</button>
-  </div>
+<div class="page active" id="page1">
+  <h1>Akarsh, will you be my Valentine? 💘</h1>
+  <button class="yes" onclick="goToPage2()">Yes ❤️</button>
+  <button class="no">No 🙈</button>
 </div>
 
 <!-- PAGE 2 -->
-<div class="page hidden" id="page2">
-  <h1>I Miss You So Much 💕</h1>
+<div class="page" id="page2">
+  <div class="hearts" id="hearts"></div>
 
-  <p>
-    You are my favorite person in the whole world 🥰<br><br>
-    Every day without you feels incomplete 💭<br><br>
-    I carry you in my heart everywhere 💖<br><br>
-    You make even ordinary days magical ✨<br><br>
-    I smile randomly because of you 😊<br><br>
-    And I fall for you more every single day 💘
-  </p>
+  <div class="message">
+    💗 You’re my favorite notification.<br><br>
+    You’re my favorite person.<br><br>
+    I miss you every second.<br><br>
+    You make my world brighter.<br><br>
+    I fall for you more every day.<br><br>
+    And I always will. 💞
+  </div>
 
-  <button class="yes" onclick="goToPage3()">Continue 💞</button>
+  <button class="yes" onclick="goToPage3()">Next 💌</button>
 </div>
 
 <!-- PAGE 3 -->
-<div class="page hidden" id="page3">
-
+<div class="page" id="page3">
   <div class="yay">YAYYYY 💗</div>
 
   <img class="panda"
-  src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" />
+  src="https://i.imgur.com/6rlkS1X.png"
+  alt="Cute Panda" />
 
   <div class="message">
     I knew you'd say YES 😌💞<br><br>
@@ -140,47 +132,37 @@ button{
   </div>
 
   <img class="panda"
-  src="https://media.giphy.com/media/l2JhC1tJ1q9Vh6Vxu/giphy.gif" />
-
+  src="https://i.imgur.com/4AiXzf8.png"
+  alt="Cute Panda 2" />
 </div>
 
 <script>
 
 function goToPage2(){
-  document.getElementById("page1").classList.add("hidden");
-  document.getElementById("page2").classList.remove("hidden");
+  document.getElementById("page1").classList.remove("active");
+  document.getElementById("page2").classList.add("active");
   startHearts();
 }
 
 function goToPage3(){
-  document.getElementById("page2").classList.add("hidden");
-  document.getElementById("page3").classList.remove("hidden");
+  document.getElementById("page2").classList.remove("active");
+  document.getElementById("page3").classList.add("active");
 }
 
-function moveNo(btn){
-  btn.style.position="absolute";
-  btn.style.top=Math.random()*70+"%";
-  btn.style.left=Math.random()*70+"%";
-}
-
-/* floating hearts */
 function startHearts(){
-  setInterval(()=>{
-    let heart=document.createElement("div");
+  const container=document.getElementById("hearts");
+  for(let i=0;i<40;i++){
+    const heart=document.createElement("div");
     heart.classList.add("heart");
-    heart.innerHTML="💖";
+    heart.innerHTML="💗";
     heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(15+Math.random()*25)+"px";
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-      heart.remove();
-    },5000);
-
-  },300);
+    heart.style.animationDuration=(3+Math.random()*5)+"s";
+    container.appendChild(heart);
+  }
 }
 
 </script>
 
 </body>
 </html>
+
