@@ -33,14 +33,15 @@ body{
 
 h1{
   color:var(--accent);
-  font-size:28px;
+  font-size:30px;
   margin-bottom:15px;
 }
 
 p{
   font-size:18px;
   color:#333;
-  max-width:300px;
+  max-width:320px;
+  line-height:1.6;
 }
 
 button{
@@ -79,10 +80,20 @@ button{
   100%{ transform:translateY(-10vh); opacity:0; }
 }
 
-/* Panda images */
+/* Page 3 Styling */
+.yay{
+  font-size:38px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.message{
+  margin:15px 0 20px;
+}
+
 .panda{
-  width:160px;
-  margin:15px 0;
+  width:150px;
+  margin:10px 0;
 }
 </style>
 </head>
@@ -117,19 +128,20 @@ button{
 
 <!-- PAGE 3 -->
 <div class="page hidden" id="page3">
-  
+
+  <div class="yay">YAYYYY 💗</div>
+
   <img class="panda"
   src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" />
 
-  <h1>YAYYYY 💗</h1>
-
-  <p>
+  <div class="message">
     I knew you'd say YES 😌💞<br><br>
     You make my world brighter every single day.
-  </p>
+  </div>
 
   <img class="panda"
   src="https://media.giphy.com/media/l2JhC1tJ1q9Vh6Vxu/giphy.gif" />
+
 </div>
 
 <script>
